@@ -63,7 +63,14 @@ open class TextFieldValidatorDelegate: NSObject, UITextFieldDelegate {
                         if !validator.validationEvent.contains(.allowBadCharacters) {
                             textField.validationBlock?([error])
                         }
-                        return !(validator.validationEvent.contains(.allowBadCharacters))
+                        
+                        let shouldReplace = !(validator.validationEvent.contains(.allowBadCharacters))
+                        
+                        if shouldReplace {
+                            let _ = (finalDelegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string))
+                        }
+                        
+                        return shouldReplace
                     }
                 }
             }
