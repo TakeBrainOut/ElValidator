@@ -23,7 +23,7 @@ open class PatternValidator : Validator {
 
     public init (validationEvent: ValidatorEvents = .atEnd, pattern: PatternValidatorRegex) {
         do {
-            try self.internalExpression = NSRegularExpression(pattern: pattern.rawValue, options: NSRegularExpression.Options.caseInsensitive)
+            try self.internalExpression = NSRegularExpression(pattern: pattern.rawValue, options: [])
         } catch {
             print(error)
         }
@@ -33,7 +33,7 @@ open class PatternValidator : Validator {
 
     public init (validationEvent: ValidatorEvents = .atEnd, customPattern: String) {
         do {
-            self.internalExpression = try NSRegularExpression(pattern: customPattern, options: NSRegularExpression.Options.caseInsensitive)
+            self.internalExpression = try NSRegularExpression(pattern: customPattern, options: [])
         } catch {
             print(error)
         }
