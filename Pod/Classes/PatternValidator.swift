@@ -42,6 +42,10 @@ open class PatternValidator : Validator {
     }
 
     open override func validate(value: String) throws {
+        guard !value.isEmpty else {
+            return
+        }
+        
         guard let internalExpression = self.internalExpression,
             internalExpression.numberOfMatches(in: value, options: .reportProgress, range: NSMakeRange(0, value.characters.count)) > 0 else {
                 throw ValidatorError.textDoNotMatchRegex
