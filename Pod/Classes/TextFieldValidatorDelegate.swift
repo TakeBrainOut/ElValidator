@@ -60,10 +60,6 @@ open class TextFieldValidatorDelegate: NSObject, UITextFieldDelegate {
                         textFieldHasChanged = true
                         try validator.validate(value: fullString)
                     } catch {
-                        if !validator.validationEvent.contains(.allowBadCharacters) {
-                            textField.validationBlock?([error])
-                        }
-                        
                         let shouldReplace = !(validator.validationEvent.contains(.allowBadCharacters))
                         
                         if shouldReplace {
